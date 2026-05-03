@@ -1,0 +1,16 @@
+<section class="products-page">
+  <header class="products-page__header">
+    <h1 class="products-page__title">Productos en stock</h1>
+    <p class="products-page__subtitle">Solo mostramos ítems con unidades disponibles.</p>
+  </header>
+
+  <div class="products-grid">
+    {{#each products}}
+      {{#if (isStock this.stock)}}
+        {{> product}}
+      {{/if}}
+    {{else}}
+      <p class="products-empty">No hay productos cargados.</p>
+    {{/each}}
+  </div>
+</section>

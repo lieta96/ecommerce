@@ -1,0 +1,36 @@
+[
+  {
+    "title": "Teclado Mecánico RGB",
+    "description": "Teclado switch blue con retroiluminación personalizada.",
+    "price": 45000,
+    "category": "Periféricos",
+    "stock": 15,
+    "status": true,
+    "code": "TEC-001",
+    "thumbnails": [],
+    "id": 1
+  },
+  {
+    "title": "Mouse Gamer Pro",
+    "description": "Sensor óptico 16000 DPI con botones programables.",
+    "price": 28000,
+    "category": "Periféricos",
+    "stock": 25,
+    "status": true,
+    "code": "MOU-002",
+    "thumbnails": [],
+    "id": 2
+  },
+  {
+    "title": "Monitor 24 Pulgadas Rebaja",
+    "description": "Panel IPS Full HD con tasa de refresco de 144Hz.",
+    "price": 155000,
+    "category": "Monitores",
+    "stock": 10,
+    "status": true,
+    "code": "MON-003",
+    "thumbnails": [],
+    "id": 3
+  }
+ 
+]

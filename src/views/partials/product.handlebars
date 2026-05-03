@@ -1,0 +1,24 @@
+<article class="product-card">
+  <div class="product-card__media">
+    {{#each thumbnails}}
+      <img
+        class="product-card__img"
+        src="/images/{{this}}"
+        alt=""
+        loading="lazy"
+      />
+    {{else}}
+      <div class="product-card__placeholder" aria-hidden="true">Sin imagen</div>
+    {{/each}}
+  </div>
+  <div class="product-card__body">
+    <h2 class="product-card__title">{{title}}</h2>
+    {{#if description}}
+      <p class="product-card__desc">{{description}}</p>
+    {{/if}}
+    <div class="product-card__meta">
+      <span class="product-card__price">${{price}}</span>
+      <span class="product-card__stock">{{stock}} u.</span>
+    </div>
+  </div>
+</article>
