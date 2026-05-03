@@ -1,10 +1,11 @@
-{{!-- enctype multipart: permite enviar archivos junto al resto de los campos --}}
+{{! enctype multipart: permite enviar archivos junto al resto de los campos }}
 
 <section class="product-form-page">
   <header class="product-form-page__header">
     <h1 class="product-form-page__title">Agregar producto</h1>
     <p class="product-form-page__subtitle">
-      Completá los datos y subí una imagen opcional. Los productos se guardan en el listado.
+      Completá los datos y subí una imagen opcional. Los productos se guardan en
+      el listado.
     </p>
   </header>
 
@@ -29,7 +30,10 @@
       </div>
 
       <div class="product-form__field">
-        <label class="product-form__label" for="product-description">Descripción</label>
+        <label
+          class="product-form__label"
+          for="product-description"
+        >Descripción</label>
         <textarea
           class="product-form__textarea"
           id="product-description"
@@ -39,12 +43,26 @@
         ></textarea>
       </div>
       <div class="product-form__field">
-        <label class="product-form__label" for="product-category">Categoría</label>
+        <label
+          class="product-form__label"
+          for="product-category"
+        >Categoría</label>
         <input
+          required
           class="product-form__input"
           id="product-category"
           name="category"
           placeholder="Categoría del producto"
+        />
+      </div>
+      <div class="product-form__field">
+        <label class="product-form__label" for="product-category">Código</label>
+        <input
+          required
+          class="product-form__input"
+          id="product-code"
+          name="code"
+          placeholder="Código del producto"
         />
       </div>
 
@@ -88,7 +106,8 @@
           />
           <span class="product-form__file-text">Elegir archivo…</span>
         </label>
-        <p class="product-form__hint">Formatos de imagen habituales (JPG, PNG, WebP).</p>
+        <p class="product-form__hint">Formatos de imagen habituales (JPG, PNG,
+          WebP).</p>
       </div>
 
       <div class="product-form__actions">
