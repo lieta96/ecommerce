@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 
 router.use(express.json(), urlencoded({ extended: true }));
 
-router.post("/:cid/product/:pid", async (req, res) => {
+router.post("/:cid/products/:pid", async (req, res) => {
   try {
     const cart = await req.cartManager.addProductToCart(
       req.params.cid,
@@ -46,5 +46,17 @@ router.post("/:cid/product/:pid", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.delete("/:cid/products/:pid",async (req, res) => {
+  try {
+    const cart = await req.cartManager.deleteProduct(
+      req.params.cid,
+      req.params.pid,
+    );
+    return res.status(200).send(cart);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
 
 export default router;
