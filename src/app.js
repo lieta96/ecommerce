@@ -14,7 +14,7 @@ app.engine(
   engine({
     defaultLayout: "main",
     helpers: {
-      isStock: (stock) => stock > 0,
+      isStock: (stock) => parseInt(stock) > 0,
     },
     partialsDir: [__dirname + "/views/partials/"],
   }),

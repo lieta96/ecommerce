@@ -1,0 +1,54 @@
+<section class="cart-page">
+  <header class="cart-page__header">
+    <p class="cart-page__eyebrow">Tu pedido</p>
+    <h1 class="cart-page__title">Carrito de compras</h1>
+    <p class="cart-page__subtitle">Revisá los ítems antes de continuar.</p>
+  </header>
+
+  {{#if products.length}}
+    <div class="cart-card">
+      <h2 class="cart-card__heading">Productos</h2>
+      <ul class="cart-list">
+        {{#each products}}
+          <li class="cart-item">
+            {{#if this.product}}
+              <div class="cart-item__info">
+                <a
+                  href="/products/{{this.product._id}}"
+                  class="cart-item__title"
+                >{{this.product.title}}</a>
+                <div class="cart-item__meta">
+                  <span class="cart-item__qty">{{this.quantity}} u.</span>
+                  {{#if this.product.price}}
+                    <span class="cart-item__unit">${{this.product.price}} c/u</span>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="cart-item__actions">
+                <a
+                  href="/products/{{this.product._id}}"
+                  class="cart-item__link"
+                >Ver producto</a>
+                <a
+                  href="/carts/{{../_id}}/products/{{this.product._id}}"
+                  class="cart-item__remove"
+                >Eliminar</a>
+              </div>
+            {{else}}
+              <p class="cart-item__unavailable">Producto no disponible</p>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+
+     
+    </div>
+  {{else}}
+    <div class="cart-empty">
+      <p class="cart-empty__text">Tu carrito está vacío.</p>
+      <a href="/products" class="cart-empty__cta">Ver productos</a>
+    </div>
+  {{/if}}
+
+  <a href="/products" class="cart-page__back">← Volver al catálogo</a>
+</section>

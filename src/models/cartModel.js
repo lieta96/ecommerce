@@ -13,7 +13,7 @@ const cartSchema = new Schema({
         },
       },
     ],
-    deafult: [],
+    default: [],
   },
 });
 export const cartModel = model("carts", cartSchema);

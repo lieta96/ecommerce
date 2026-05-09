@@ -3,7 +3,9 @@
     <h1 class="products-page__title">Productos en stock</h1>
     <p class="products-page__subtitle">Solo mostramos ítems con unidades disponibles.</p>
   </header>
-
+<p>
+  Página {{pagination.page}} de {{pagination.totalPages}}
+</p>
   <div class="products-grid">
     {{#each products}}
       {{#if (isStock this.stock)}}
@@ -12,5 +14,15 @@
     {{else}}
       <p class="products-empty">No hay productos cargados.</p>
     {{/each}}
+  </div>
+  <div class="pagination">
+    {{#if pagination.hasPrevPage}}
+      <a href="/products?page={{pagination.prevPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}" class="pagination__link">Anterior</a>
+    {{/if}}
+   
+   
+    {{#if pagination.hasNextPage}}
+      <a href="/products?page={{pagination.nextPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}" class="pagination__link">Siguiente</a>
+    {{/if}}
   </div>
 </section>
