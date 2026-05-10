@@ -2,14 +2,16 @@
   <header class="products-page__header">
     <h1 class="products-page__title">Productos en stock</h1>
     <p class="products-page__subtitle">Solo mostramos ítems con unidades disponibles.</p>
+    <p>Total de productos en el carrito: <span id="cart-total">{{totalCartProducts}}</span></p>
   </header>
 <p>
   Página {{pagination.page}} de {{pagination.totalPages}}
 </p>
+
   <div class="products-grid">
     {{#each products}}
       {{#if (isStock this.stock)}}
-        {{> product}}
+        {{> product cid=cid}}
       {{/if}}
     {{else}}
       <p class="products-empty">No hay productos cargados.</p>
@@ -17,12 +19,15 @@
   </div>
   <div class="pagination">
     {{#if pagination.hasPrevPage}}
-      <a href="/products?page={{pagination.prevPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}" class="pagination__link">Anterior</a>
+      <a href="/products?page={{pagination.prevPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}&cid={{cid}}" class="pagination__link">Anterior</a>
     {{/if}}
    
    
     {{#if pagination.hasNextPage}}
-      <a href="/products?page={{pagination.nextPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}" class="pagination__link">Siguiente</a>
+      <a href="/products?page={{pagination.nextPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}&cid={{cid}}" class="pagination__link">Siguiente</a>
     {{/if}}
   </div>
 </section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/product.js"></script>

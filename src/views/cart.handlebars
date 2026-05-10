@@ -1,8 +1,8 @@
 <section class="cart-page">
   <header class="cart-page__header">
     <p class="cart-page__eyebrow">Tu pedido</p>
-    <h1 class="cart-page__title">Carrito de compras</h1>
-    <p class="cart-page__subtitle">Revisá los ítems antes de continuar.</p>
+    <h1 class="cart-page__title">Carrito de compras</h1>   
+    <p>Total de productos en el carrito: <span id="cart-total">{{totalCartProducts}}</span></p>
   </header>
 
   {{#if products.length}}
@@ -10,11 +10,11 @@
       <h2 class="cart-card__heading">Productos</h2>
       <ul class="cart-list">
         {{#each products}}
-          <li class="cart-item">
+          <li class="cart-item" id="{{this.product._id}}">
             {{#if this.product}}
               <div class="cart-item__info">
                 <a
-                  href="/products/{{this.product._id}}"
+                  href="/products/{{this.product._id}}?cid={{../id}}"
                   class="cart-item__title"
                 >{{this.product.title}}</a>
                 <div class="cart-item__meta">
@@ -24,6 +24,14 @@
                   {{/if}}
                 </div>
               </div>
+              <form>
+      <button
+      data-cid="{{../id}}"
+      type="submit"
+     class="cart-item__remove"
+      data-pid="{{this.product._id}}"    
+       type="submit">Eliminar</button>
+    </form>
              
                 {{!-- <form
                 class="cart-item__actions"
@@ -49,5 +57,7 @@
     </div>
   {{/if}}
 
-  <a href="/products" class="cart-page__back">← Volver al catálogo</a>
+  <a href="/products?cid={{id}}" class="cart-page__back">← Volver al catálogo</a>
 </section>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/cart.js"></script>

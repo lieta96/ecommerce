@@ -37,20 +37,21 @@
         <span class="product-detail__stock">{{stock}} u.</span>
       </div>
 
-      <div class="product-detail__actions">
-        <button
-          type="button"
+      <form class="product-detail__actions">
+        <button         
           class="product-detail__btn"
           data-pid="{{_id}}"
-          data-cid="{{cid}}"
-          data-action="add"
-          onclick="addToCart(this)"
+          data-cid="{{cid}}"        
+          type="submit"
         >
           Agregar al carrito
         </button>
       </div>
 
-      <a href="/products" class="product-detail__back">← Volver al catálogo</a>
-    </div>
+      <a href="/products?cid={{cid}}" class="product-detail__back">← Volver al catálogo</a>
+    </form>
   </article>
 </section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/product.js"></script>

@@ -132,24 +132,24 @@ Debe permitir:
 ### Rutas de vistas
 
 - [x] **`/products`** — Listado de productos con paginación.
-- [ ] **`/products/:pid`** — Vista de detalle del producto, con opción para agregar al carrito.
-- [ ] **`/carts/:cid`** — Visualización de un carrito específico.
+- [x] **`/products/:pid`** — Vista de detalle del producto, con opción para agregar al carrito.
+- [x] **`/carts/:cid`** — Visualización de un carrito específico.
 
 ### WebSockets
 
-- [ ] Implementar actualización **en tiempo real** de productos.
-- [ ] Los cambios deben reflejarse **automáticamente** en la vista.
+- [x] Implementar actualización **en tiempo real** de productos.
+- [x] Los cambios deben reflejarse **automáticamente** en la vista.
 
 ---
 
 ## Requisitos técnicos generales
 
-- [ ] Uso de **Express Router**.
+- [x] Uso de **Express Router**.
 - [ ] Uso de **middleware**.
-- [ ] Manejo de asincronía con **`async` / `await`**.
-- [ ] Uso de **Mongoose**.
-- [ ] Código **modular y organizado**.
-- [ ] Manejo **básico de errores**.
+- [x] Manejo de asincronía con **`async` / `await`**.
+- [x] Uso de **Mongoose**.
+- [x] Código **modular y organizado**.
+- [x] Manejo **básico de errores**.
 
 ---
 
