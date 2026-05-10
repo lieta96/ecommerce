@@ -145,7 +145,7 @@ Debe permitir:
 ## Requisitos técnicos generales
 
 - [x] Uso de **Express Router**.
-- [ ] Uso de **middleware**.
+- [x] Uso de **middleware**.
 - [x] Manejo de asincronía con **`async` / `await`**.
 - [x] Uso de **Mongoose**.
 - [x] Código **modular y organizado**.

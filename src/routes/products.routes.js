@@ -2,12 +2,9 @@ import { Router, urlencoded } from "express";
 import express from "express";
 // import { attachManagerToRequest } from "../middlewares/products.middlewares.js";
 import { uploader } from "../utils.js";
-import { productModel } from "../models/productModel.js";
-
+import { productModel } from "../models/productModel.js"
 const router = Router();
-
 // router.use(attachManagerToRequest);
-
 router.get("/", async (req, res) => {
   try {
     // const products = await req.productManager.getProducts();
