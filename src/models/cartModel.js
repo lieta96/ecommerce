@@ -1,5 +1,6 @@
 import { Schema, model, Types } from "mongoose";
 const cartSchema = new Schema({
+  id:{ type: String, unique: true, required: true },
   products: {
     type: [
       {

@@ -20,19 +20,19 @@ Este documento describe el proyecto de entrega final de la cursada **Backend I**
 
 Debe permitir:
 
-- [ ] **`limit`** (cantidad de resultados)
-- [ ] **`page`** (paginación)
-- [ ] **`query`** (filtro por categoría o disponibilidad)
-- [ ] **`sort`** (orden ascendente o descendente por precio)
+- [x] **`limit`** (cantidad de resultados)
+- [x] **`page`** (paginación)
+- [x] **`query`** (filtro por categoría o disponibilidad)
+- [x] **`sort`** (orden ascendente o descendente por precio)
 
 **Valores por defecto:**
 
-- [ ] `limit = 10`
-- [ ] `page = 1`
+- [x] `limit = 10`
+- [x] `page = 1`
 
 **Formato de respuesta esperado:**
 
-- [ ] El cuerpo de la respuesta sigue esta estructura (con `payload` paginado y metadatos de navegación):
+- [x] El cuerpo de la respuesta sigue esta estructura (con `payload` paginado y metadatos de navegación):
 
 ```json
 {
@@ -51,11 +51,11 @@ Debe permitir:
 
 ### `GET /api/products/:pid`
 
-- [ ] Obtener un producto por ID.
+- [x] Obtener un producto por ID.
 
 ### `POST /api/products`
 
-- [ ] Crear producto con los siguientes campos:
+- [x] Crear producto con los siguientes campos:
   - `title`
   - `description`
   - `code`
@@ -64,16 +64,16 @@ Debe permitir:
   - `stock`
   - `category`
   - `thumbnails`
-- [ ] El **ID** debe generarse automáticamente.
+- [x] El **ID** debe generarse automáticamente.
 
 ### `PUT /api/products/:pid`
 
-- [ ] Actualizar producto existente.
-- [ ] No se debe modificar el **ID**.
+- [x] Actualizar producto existente.
+- [x] No se debe modificar el **ID**.
 
 ### `DELETE /api/products/:pid`
 
-- [ ] Eliminar producto.
+- [x] Eliminar producto.
 
 ---
 
@@ -81,49 +81,49 @@ Debe permitir:
 
 ### `POST /api/carts`
 
-- [ ] Crear carrito con **ID autogenerado**.
+- [x] Crear carrito con **ID autogenerado**.
 
 ### `GET /api/carts/:cid`
 
-- [ ] Listar productos del carrito.
-- [ ] Utilizar **`populate`** para traer información completa de los productos.
+- [x] Listar productos del carrito.
+- [x] Utilizar **`populate`** para traer información completa de los productos.
 
 ### `POST /api/carts/:cid/products/:pid`
 
-- [ ] Agregar producto al carrito.
-- [ ] Si el producto ya existe en el carrito, **incrementar la cantidad**.
+- [x] Agregar producto al carrito.
+- [x] Si el producto ya existe en el carrito, **incrementar la cantidad**.
 
 ### `DELETE /api/carts/:cid/products/:pid`
 
-- [ ] Eliminar producto del carrito.
+- [x] Eliminar producto del carrito.
 
 ### `PUT /api/carts/:cid`
 
-- [ ] Actualizar **todos** los productos del carrito.
+- [x] Actualizar **todos** los productos del carrito.
 
 ### `PUT /api/carts/:cid/products/:pid`
 
-- [ ] Actualizar **únicamente la cantidad** de un producto.
+- [x] Actualizar **únicamente la cantidad** de un producto.
 
 ### `DELETE /api/carts/:cid`
 
-- [ ] **Vaciar** el carrito completo.
+- [x] **Vaciar** el carrito completo.
 
 ---
 
 ## 4. Persistencia
 
-- [ ] Implementar **MongoDB** con **Mongoose**.
-- [ ] Base de datos: **`ecommerce`**.
-- [ ] Colecciones:
-  - [ ] `products`
-  - [ ] `carts`
+- [x] Implementar **MongoDB** con **Mongoose**.
+- [x] Base de datos: **`ecommerce`**.
+- [x] Colecciones:
+  - [x] `products`
+  - [x] `carts`
 
 **Estructura del proyecto:**
 
-- [ ] Mantener carpeta **`dao`**.
-- [ ] Mantener carpeta **`models`**.
-- [ ] **No eliminar** la implementación previa con **FileSystem**.
+- [x] Mantener carpeta **`dao`**.
+- [x] Mantener carpeta **`models`**.
+- [x] **No eliminar** la implementación previa con **FileSystem**.
 
 ---
 
@@ -131,7 +131,7 @@ Debe permitir:
 
 ### Rutas de vistas
 
-- [ ] **`/products`** — Listado de productos con paginación.
+- [x] **`/products`** — Listado de productos con paginación.
 - [ ] **`/products/:pid`** — Vista de detalle del producto, con opción para agregar al carrito.
 - [ ] **`/carts/:cid`** — Visualización de un carrito específico.
 

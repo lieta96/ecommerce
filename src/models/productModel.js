@@ -26,6 +26,7 @@ const productSchema = new Schema({
   status: Boolean,
   code: { type: String, unique: true, required: true },
   thumbnails: { type: [String], default: [] },
+  id:{ type: String, unique: true, required: true },
 });
 productSchema.plugin(mongoosePaginate); // Conecta el plugin
 export const productModel = model(

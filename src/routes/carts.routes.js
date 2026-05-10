@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
       select: "title",
     });
     if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
-    return res.status(200).send(cart);
+    return res.status(200).send(cart.products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -34,7 +34,8 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     // const cart = await req.cartManager.createCart();
-    const cart = await cartModel.create(req.body);
+    const id = crypto.randomUUID();
+    const cart = await cartModel.create({ id });
     res.status(200).send(cart);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -42,7 +43,24 @@ router.post("/", async (req, res) => {
 });
 
 router.use(express.json(), urlencoded({ extended: true }));
-
+router.put("/:cid", async (req, res) => {
+  try {
+    if (!Array.isArray(req.body)) {
+      return res
+        .status(400)
+        .json({ error: "Se esperaba un array de productos" });
+    }
+    const cart = await cartModel.findByIdAndUpdate(
+      req.params.cid,
+      { $set: { products: req.body } },
+      { returnDocument: "after" },
+    );
+    if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
+    return res.status(200).send(cart);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 router.post("/:cid/products/:pid", async (req, res) => {
   try {
     // const cart = await req.cartManager.addProductToCart(
@@ -106,11 +124,11 @@ router.delete("/:cid", async (req, res) => {
     // );
     const { cid, pid } = req.params;
     let cart = await cartModel.findOneAndUpdate(
-      { _id: cid,  },
+      { _id: cid },
       { $set: { products: [] } },
       { returnDocument: "after" },
     );
-    
+
     if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
     return res.status(200).send(cart);
   } catch (error) {

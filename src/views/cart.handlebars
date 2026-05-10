@@ -24,16 +24,15 @@
                   {{/if}}
                 </div>
               </div>
-              <div class="cart-item__actions">
-                <a
-                  href="/products/{{this.product._id}}"
-                  class="cart-item__link"
-                >Ver producto</a>
-                <a
-                  href="/carts/{{../_id}}/products/{{this.product._id}}"
+             
+                {{!-- <form
+                class="cart-item__actions"
+                 action="/api/carts/{{../_id}}/products/{{this.product._id}}" method="POST">
+                  <button 
                   class="cart-item__remove"
-                >Eliminar</a>
-              </div>
+                  type="submit">Eliminar</button>
+                </form> --}}
+              
             {{else}}
               <p class="cart-item__unavailable">Producto no disponible</p>
             {{/if}}
