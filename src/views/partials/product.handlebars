@@ -1,5 +1,4 @@
 <article class="product-card">
-
   {{#each thumbnails}}
     <div class="product-card__media">
       <img
@@ -9,34 +8,24 @@
         loading="lazy"
       /></div>
   {{else}}
-
   {{/each}}
-
   <div class="product-card__body">
-   <a href="/products/{{_id}}?cid={{@root.cid}}" class="product-card__link"> <h2 class="product-card__title">{{title}}</h2></a>
-   
+    <a href="/products/{{_id}}?cid={{@root.cid}}" class="product-card__link">
+      <h2 class="product-card__title">{{title}}</h2></a>
+
     <div class="product-card__meta">
       <span class="product-card__price">${{price}}</span>
       <span class="product-card__stock">{{stock}} u.</span>
     </div>
     <div>
-      {{! A qué carrito lo agregamos? Crear un carrito cuando se preciona agregar al carrito y mantenerlo en la sesión actual }}
-      {{!-- <button data-pid="{{_id}}"
-      data-cid="{{cid}}"
-      data-action="add"
-      class="product-card__button"     
-      onclick="addToCart(this)"
-      >
-        Agregar al carrito
-      </button> --}}
     </div>
-    <form   
-    >
+    <form>
       <button
-      data-cid="{{@root.cid}}"
-      class="product-card__button"
-      data-pid="{{_id}}"    
-       type="submit">Agregar al carrito</button>
+        data-cid="{{@root.cid}}"
+        class="product-card__button"
+        data-pid="{{_id}}"
+        type="submit"
+      >Agregar al carrito</button>
     </form>
   </div>
 </article>

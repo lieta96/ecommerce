@@ -4,7 +4,6 @@
     <h1 class="cart-page__title">Carrito de compras</h1>   
     <p>Total de productos en el carrito: <span id="cart-total">{{totalCartProducts}}</span></p>
   </header>
-
   {{#if products.length}}
     <div class="cart-card">
       <h2 class="cart-card__heading">Productos</h2>
@@ -24,31 +23,20 @@
                   {{/if}}
                 </div>
               </div>
-              <form>
-      <button
-      data-cid="{{../id}}"
-      type="submit"
-     class="cart-item__remove"
-      data-pid="{{this.product._id}}"    
-       type="submit">Eliminar</button>
-    </form>
-             
-                {{!-- <form
-                class="cart-item__actions"
-                 action="/api/carts/{{../_id}}/products/{{this.product._id}}" method="POST">
-                  <button 
-                  class="cart-item__remove"
-                  type="submit">Eliminar</button>
-                </form> --}}
-              
+          <form>
+            <button
+            data-cid="{{../id}}"
+            type="submit"
+           class="cart-item__remove"
+            data-pid="{{this.product._id}}"    
+            type="submit">Eliminar</button>
+          </form>              
             {{else}}
               <p class="cart-item__unavailable">Producto no disponible</p>
             {{/if}}
-          </li>
+        </li>
         {{/each}}
-      </ul>
-
-     
+      </ul>     
     </div>
   {{else}}
     <div class="cart-empty">
@@ -56,7 +44,6 @@
       <a href="/products" class="cart-empty__cta">Ver productos</a>
     </div>
   {{/if}}
-
   <a href="/products?cid={{id}}" class="cart-page__back">← Volver al catálogo</a>
 </section>
 <script src="/socket.io/socket.io.js"></script>

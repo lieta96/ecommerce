@@ -3,11 +3,8 @@ import express from "express";
 // import { attachManagerToRequest } from "../middlewares/carts.middlewares.js";
 import { uploader } from "../utils.js";
 import { cartModel } from "../models/cartModel.js";
-
 const router = Router();
-
 // router.use(attachManagerToRequest);
-
 router.get("/", async (req, res) => {
   try {
     // const carts = await req.cartManager.getCarts();
@@ -20,26 +17,25 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     // const cart = await req.cartManager.getCartById(req.params.id);
-    const cart = await cartModel.findById(req.params.id)
+    const cart = await cartModel.findById(req.params.id);
     if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
     return res.status(200).send(cart.products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
-
 router.post("/", async (req, res) => {
   try {
     // const cart = await req.cartManager.createCart();
     const id = crypto.randomUUID();
     const cart = await cartModel.create({ id });
-    res.status(200).send(cart);
+    res.status(201).send(cart);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
-
 router.use(express.json(), urlencoded({ extended: true }));
+
 router.put("/:cid", async (req, res) => {
   try {
     if (!Array.isArray(req.body)) {

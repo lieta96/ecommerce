@@ -1,8 +1,5 @@
 import fs from "fs";
 import { __dirname } from "../utils.js";
-
-// const productsPath = "./src/dao/data/products.json";
-
 class ProductManager {
   constructor() {
     this.productsPath = __dirname + "/dao/data/products.json";
@@ -38,6 +35,20 @@ class ProductManager {
     } catch (error) {
       throw new Error(error.message);
     }
+  }
+    async deleteProductById(id) {
+    const products = await this.getProducts();
+    const indexProduct = products.findIndex((obj) => obj.id == id);
+    const deletedProduct = products[indexProduct];
+    if (indexProduct > -1) {
+      products.splice(indexProduct, 1);
+      await fs.promises.writeFile(
+        this.productsPath,
+        JSON.stringify(products),
+        {},
+      );
+    }
+    return deletedProduct;
   }
   async updateProductById(id, updatedProduct) {
     try {
@@ -85,20 +96,6 @@ class ProductManager {
         throw new Error(error.message);
       }
     } else throw new Error("Name o price incorrectos");
-  }
-  async deleteProductById(id) {
-    const products = await this.getProducts();
-    const indexProduct = products.findIndex((obj) => obj.id == id);
-    const deletedProduct = products[indexProduct];
-    if (indexProduct > -1) {
-      products.splice(indexProduct, 1);
-      await fs.promises.writeFile(
-        this.productsPath,
-        JSON.stringify(products),
-        {},
-      );
-    }
-    return deletedProduct;
   }
 }
 export default new ProductManager();

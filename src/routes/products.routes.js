@@ -2,10 +2,11 @@ import { Router, urlencoded } from "express";
 import express from "express";
 // import { attachManagerToRequest } from "../middlewares/products.middlewares.js";
 import { uploader } from "../utils.js";
-import { productModel } from "../models/productModel.js"
+import { productModel } from "../models/productModel.js";
 const router = Router();
 // router.use(attachManagerToRequest);
 router.get("/", async (req, res) => {
+  // Traemos el listado de productos
   try {
     // const products = await req.productManager.getProducts();
     const { limit = 10, page = 1, category, available, sort } = req.query;
@@ -42,7 +43,6 @@ router.get("/:id", async (req, res) => {
 });
 
 router.use(express.json(), urlencoded({ extended: true }));
-
 router.post("/", uploader.single("thumbnail"), async (req, res) => {
   try {
     req.body.thumbnails =
@@ -50,15 +50,15 @@ router.post("/", uploader.single("thumbnail"), async (req, res) => {
     // const product = await req.productManager.createProduct(req.body);
     req.body.id = crypto.randomUUID();
     const product = await productModel.create(req.body);
-    res.status(200).send(product);
+    res.status(201).send(product);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 router.post("/bulk", async (req, res) => {
   try {
+    // Ruta agregada para poder subir varios productos a la vez
     const productsArray = req.body;
-
     if (!Array.isArray(productsArray)) {
       return res
         .status(400)
@@ -69,7 +69,6 @@ router.post("/bulk", async (req, res) => {
       return elm;
     });
     const products = await productModel.insertMany(productsArray);
-
     res.status(201).send(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -91,5 +90,4 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 export default router;

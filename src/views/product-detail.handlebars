@@ -2,11 +2,8 @@
   <header class="product-detail-page__header">
     <p class="product-detail-page__eyebrow">Producto</p>
     <h1 class="product-detail-page__title">{{productTitle}}</h1>
-    {{#if category}}
-      <p class="product-detail-page__category">{{category}}</p>
-    {{/if}}
+    {{#if category}}<p class="product-detail-page__category">{{category}}</p>{{/if}}
   </header>
-
   <article class="product-detail{{#unless thumbnails.length}} product-detail--data-only{{/unless}}">
     {{#if thumbnails.length}}
       <div class="product-detail__gallery" aria-label="Imágenes del producto">
@@ -22,21 +19,15 @@
         {{/each}}
       </div>
     {{/if}}
-
     <div class="product-detail__panel">
-      {{#if description}}
-        <p class="product-detail__desc">{{description}}</p>
-      {{/if}}
-
+      {{#if description}}<p class="product-detail__desc">{{description}}</p>{{/if}}
       {{#if code}}
         <p class="product-detail__code"><span class="product-detail__code-label">Código</span> {{code}}</p>
       {{/if}}
-
       <div class="product-detail__meta">
         <span class="product-detail__price">${{price}}</span>
         <span class="product-detail__stock">{{stock}} u.</span>
       </div>
-
       <form class="product-detail__actions">
         <button         
           class="product-detail__btn"
@@ -47,11 +38,9 @@
           Agregar al carrito
         </button>
       </div>
-
       <a href="/products?cid={{cid}}" class="product-detail__back">← Volver al catálogo</a>
     </form>
   </article>
 </section>
-
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/product.js"></script>

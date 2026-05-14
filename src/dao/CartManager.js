@@ -1,6 +1,5 @@
 import fs from "fs";
 import { __dirname } from "../utils.js";
-
 class CartManager {
   constructor() {
     this.cartsPath = __dirname + "/dao/data/carts.json";
@@ -86,13 +85,15 @@ class CartManager {
   async deleteProduct(cid, pid) {
     const carts = await this.getCarts();
     let cartIndex = carts.findIndex((elm) => elm.id == cid);
-    if (cartIndex==-1) return "El carrito solicitado no existe";
-    const filteredProducts = carts[cartIndex].products.filter((elm) => elm.id != pid);
-    carts[cartIndex].products=filteredProducts
+    if (cartIndex == -1) return "El carrito solicitado no existe";
+    const filteredProducts = carts[cartIndex].products.filter(
+      (elm) => elm.id != pid,
+    );
+    carts[cartIndex].products = filteredProducts;
     await fs.promises.writeFile(this.cartsPath, JSON.stringify(carts), {
       encoding: "utf-8",
     });
-    return  carts[cartIndex];
+    return carts[cartIndex];
   }
 }
 export default new CartManager();

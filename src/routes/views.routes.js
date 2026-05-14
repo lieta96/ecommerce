@@ -8,8 +8,6 @@ router.get("/", (req, res) => {
 });
 router.get("/products", async (req, res) => {
   // const products = await ProductManager.getProducts();
-  
-  // Al abrir la vista de productos creamos un carrito en la base de datos
   const { limit = 10, page = 1, category, available, sort } = req.query;
   const filter = category ? { category: category } : {};
   if (available) filter.stock = { $gt: 0 };
@@ -20,25 +18,20 @@ router.get("/products", async (req, res) => {
     lean: true,
   });
   const { totalPages, prevPage, nextPage, hasPrevPage, hasNextPage } = products;
-  const cartID = req.query.cid || crypto.randomUUID()
-  const cart= await cartModel.findOne({ id: cartID })
-  const totalCartProducts = cart?.products.reduce((acc, product) => acc + product.quantity, 0) ||0
+  // Al abrir la vista de productos chequeamos si viene por params el id de un carrito
+  // El id puede venir por params porque ya se inició una compra y el usuario está navegando entre las diiferentes páginas de productos
+  // En caso de que no venga por params, lo creamos y pasamos a handlebars
+  const cartID = req.query.cid || crypto.randomUUID();
+  const cart = await cartModel.findOne({ id: cartID });
+  const totalCartProducts =
+    cart?.products.reduce((acc, product) => acc + product.quantity, 0) || 0;
   res.render("products.handlebars", {
-    title:"Productos - Ecommerce",
+    title: "Productos - Ecommerce",
     products: products.docs,
     cid: cartID,
     totalCartProducts: totalCartProducts,
     pagination: {
-      totalPages,
-      prevPage,
-      nextPage,
-      page: page,
-      hasPrevPage,
-      hasNextPage,
-      limit: limit,
-      category: category,
-      available: available,
-      sort: sort,
+      totalPages, prevPage,nextPage,page: page,hasPrevPage,hasNextPage,limit: limit,category: category,available: available,sort: sort,
     },
   });
 });
@@ -48,7 +41,10 @@ router.get("/products/:id", async (req, res) => {
   if (!product)
     return res.status(404).json({ error: "Producto no encontrado" });
   const pageTitle = `${product.title} - Ecommerce`;
-  const cid = req.query.cid || crypto.randomUUID()
+  // Al abrir la vista del producto chequeamos si viene por params el id de un carrito
+  // El id puede venir por params porque ya se inició una compra o el usuario viene de la página de productos
+  // En caso de que no venga por params, lo creamos y pasamos a handlebars
+  const cid = req.query.cid || crypto.randomUUID();
   res.render("product-detail.handlebars", {
     ...product,
     title: pageTitle,
@@ -66,8 +62,9 @@ router.get("/carts/:cid", async (req, res) => {
     })
     .lean();
   if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
-  const totalCartProducts = cart?.products.reduce((acc, product) => acc + product.quantity, 0) ||0
-    console.log(cart)
+  const totalCartProducts =
+    cart?.products.reduce((acc, product) => acc + product.quantity, 0) || 0;
+  console.log(cart);
   res.render("cart.handlebars", {
     ...cart,
     totalCartProducts: totalCartProducts,

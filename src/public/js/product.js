@@ -1,6 +1,7 @@
-// const cartID = crypto.randomUUID();
-
-const clientSocket = io();
+const cid =
+  document.querySelector("[data-cid]")?.dataset.cid ??
+  new URLSearchParams(location.search).get("cid");
+const clientSocket = io({ auth: { cid } });
 
 const productsGrid = document.querySelector(".products-grid");
 const productDetail = document.querySelector(".product-detail__actions");
@@ -17,13 +18,15 @@ if (section) {
         ? e.submitter
         : form.querySelector("button[data-pid]");
 
-    const pid = button?.dataset.pid ?? form.dataset.pid;
-    const cid = button?.dataset.cid ?? form.dataset.cid;
-    clientSocket.emit("add-to-cart", { cid, pid });
+    const pid = button.dataset.pid ;
+    clientSocket.emit("add-to-cart", { pid });
   });
 }
-clientSocket.on("cart-updated", (cart) => {
+clientSocket.on("cart-updated", (payload) => {
+  const cart = payload?.cart ?? payload;
   const cartTotal = document.getElementById("cart-total");
-  if(cartTotal)   cartTotal.textContent = cart.products.reduce((acc, product) => acc + product.quantity, 0);
- 
+  if (cartTotal) {
+    cartTotal.textContent =
+      cart?.products?.reduce((acc, product) => acc + product.quantity, 0) ?? 0;
+  }
 });

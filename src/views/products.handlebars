@@ -20,9 +20,7 @@
   <div class="pagination">
     {{#if pagination.hasPrevPage}}
       <a href="/products?page={{pagination.prevPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}&cid={{cid}}" class="pagination__link">Anterior</a>
-    {{/if}}
-   
-   
+    {{/if}}   
     {{#if pagination.hasNextPage}}
       <a href="/products?page={{pagination.nextPage}}&limit={{pagination.limit}}&category={{pagination.category}}&available={{pagination.available}}&sort={{pagination.sort}}&cid={{cid}}" class="pagination__link">Siguiente</a>
     {{/if}}

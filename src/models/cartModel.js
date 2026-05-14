@@ -1,6 +1,6 @@
 import { Schema, model, Types } from "mongoose";
 const cartSchema = new Schema({
-  id:{ type: String, unique: true, required: true },
+  id: { type: String, unique: true, required: true },
   products: {
     type: [
       {
@@ -17,10 +17,10 @@ const cartSchema = new Schema({
     default: [],
   },
 });
-cartSchema.pre(["find", "findOne"],async  function () {
+cartSchema.pre(["find", "findOne"], async function () {
   this.populate({
     path: "products.product",
-    select: "title", 
+    select: "title",
   });
 });
 export const cartModel = model("carts", cartSchema);
